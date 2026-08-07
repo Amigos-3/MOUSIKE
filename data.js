@@ -24,10 +24,10 @@
 const SONGS = [
   {
     id: "s1",
-    title: "Judul Lagu 1 - Nama Artis 1", // GANTI judul & artis
-    cover: "cover-1.svg",   // GANTI dengan gambar cover asli
-    audio: "lagu-1.mp3",     // GANTI dengan file musik asli
-    duration: 226
+    title: "Despues", // GANTI judul & artis
+    cover: "Titi me pergunta .jpeg",   // GANTI dengan gambar cover asli
+    audio: "DESPUES.mp3",     // GANTI dengan file musik asli
+    duration: 38
   },
   {
     id: "s2",
