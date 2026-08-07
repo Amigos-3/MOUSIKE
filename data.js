@@ -105,17 +105,17 @@ const PROFILES = [
     file: "profile-2.html",
     username: "Berlin",
     photo: "dev2.jpeg",
-    tagLabel: "@Vayang",
-    tagLink: "https://www.instagram.com/vays.kennedy?igsh=YWNueHZoZW84dDM1",
-    pseudonim: "Nama Panggilan 2",
+    tagLabel: "@Liēn",
+    tagLink: "https://www.instagram.com/berltheline?igsh=YWNueHZoZW84dDM1",
+    pseudonim: "Berliēn Theoline",
     latarBelakang: "SMK Jurusan Teknik Komputer dan Jaringan",
     tanggalLahir: "25 Juni 2009",
     motivasi: "Tidak ada yang tahu jalan kehidupanmu, dengan siapa engkau bertemu, menjalani kehidupan. Terimalah apapun yang terjadi, berjuanglah demi yang memang pantas diperjuangkan.",
     favoriteSong: {
-      title: "Judul Lagu Favorit 2 - Nama Artis",
-      cover: "cover-2.svg",
-      audio: "lagu-2.mp3",
-      duration: 383
+      title: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA",
+      cover: "Jealousy.jpeg",
+      audio: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA.mp3",
+      duration: 390
     }
   },
   {
