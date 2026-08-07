@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Developer 3 | Moesik</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="profile-detail-page">
+
+  <header class="site-header">
+    <a href="profiles.html" class="menu-btn" aria-label="Kembali ke Our Profile" style="text-decoration:none;">
+      <span></span><span></span><span></span>
+    </a>
+    <h1 class="site-title">THREE AMIGOS</h1>
+    <a class="logo-link" href="profiles.html" title="Our Profile">
+      <img src="logo.jpg" alt="Logo Moesik">
+    </a>
+  </header>
+
+  <div class="profile-detail-wrap" id="profileWrap"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    const profile = PROFILES[2];
+    const wrap = document.getElementById("profileWrap");
+
+    const photoDiv = document.createElement("div");
+    photoDiv.className = "profile-photo";
+    photoDiv.innerHTML = `<img src="${profile.photo}" alt="${profile.username}">`;
+    wrap.appendChild(photoDiv);
+
+    const box = document.createElement("div");
+    box.className = "profile-box";
+    box.innerHTML = `
+      <h2 class="profile-username">${profile.username}</h2>
+      <a class="profile-tag" href="${profile.tagLink}" target="_blank" rel="noopener">${profile.tagLabel}</a>
+      <div class="profile-columns">
+        <div class="profile-col-song">
+          <h3>Favorite Song</h3>
+          <div id="favSongSlot"></div>
+        </div>
+        <div class="profile-col-info">
+          <h3>Biodata</h3>
+          <div class="biodata-row"><span class="biodata-label">Pseudonim</span><span class="biodata-value">: ${profile.pseudonim}</span></div>
+          <div class="biodata-row"><span class="biodata-label">Latar Belakang Akademik</span><span class="biodata-value">: ${profile.latarBelakang}</span></div>
+          <div class="biodata-row"><span class="biodata-label">Tanggal Lahir</span><span class="biodata-value">: ${profile.tanggalLahir}</span></div>
+          <h3 style="margin-top:22px;">Motivasi</h3>
+          <div class="motivasi-block">${profile.motivasi}</div>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(box);
+
+    const slot = box.querySelector("#favSongSlot");
+    const card = createSongCard(profile.favoriteSong, { allowShuffle: false });
+    card.classList.add("mini-song-card");
+    slot.appendChild(card);
+  </script>
+</body>
+</html>

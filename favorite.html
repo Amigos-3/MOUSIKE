@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favorite | Moesik</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="sidebar-overlay"></div>
+  <nav class="sidebar">
+    <button class="sidebar-close">&times;</button>
+    <a href="index.html">BERANDA</a>
+    <a href="favorite.html" class="active">FAVORITE</a>
+  </nav>
+
+  <header class="site-header">
+    <button class="menu-btn" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+    <h1 class="site-title">THREE AMIGOS</h1>
+    <a class="logo-link" href="profiles.html" title="Lihat profile developer">
+      <img src="logo.jpg" alt="Logo Moesik">
+    </a>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search-bar">
+      <span class="icon">&#128269;</span>
+      <input type="text" id="searchInput" placeholder="Cari Moesik Favorite Loe">
+    </div>
+  </div>
+
+  <main class="song-grid" id="songGrid"></main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    const grid = document.getElementById("songGrid");
+    const searchInput = document.getElementById("searchInput");
+
+    function getFavoriteSongs() {
+      const favIds = getFavorites();
+      return SONGS.filter((s) => favIds.includes(s.id));
+    }
+
+    function refresh() {
+      const favs = getFavoriteSongs();
+      const q = searchInput.value.trim().toLowerCase();
+      const filtered = q ? favs.filter((s) => s.title.toLowerCase().includes(q)) : favs;
+      renderSongGrid(grid, filtered, {
+        emptyText: q ? "Lagu favorite tidak ditemukan." : "Kamu belum menyimpan lagu favorite. Tekan ikon hati pada lagu di Beranda."
+      });
+    }
+
+    refresh();
+    searchInput.addEventListener("input", refresh);
+    document.addEventListener("moesik:favorites-changed", refresh);
+  </script>
+</body>
+</html>

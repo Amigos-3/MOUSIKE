@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Profile | Moesik</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="profiles-page">
+
+  <header class="site-header">
+    <a href="index.html" class="menu-btn" aria-label="Kembali ke beranda" style="text-decoration:none;">
+      <span></span><span></span><span></span>
+    </a>
+    <h1 class="site-title">THREE AMIGOS</h1>
+    <a class="logo-link" href="profiles.html" title="Our Profile">
+      <img src="logo.jpg" alt="Logo Moesik">
+    </a>
+  </header>
+
+  <h2 class="profiles-title">Our Profile</h2>
+
+  <div class="profiles-grid" id="profilesGrid"></div>
+
+  <script src="data.js"></script>
+  <script>
+    const grid = document.getElementById("profilesGrid");
+    PROFILES.forEach((p) => {
+      const a = document.createElement("a");
+      a.className = "profile-avatar-link";
+      a.href = p.file;
+      a.innerHTML = `<img src="${p.photo}" alt="${p.username}">`;
+      grid.appendChild(a);
+    });
+  </script>
+</body>
+</html>
