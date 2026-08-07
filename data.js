@@ -24,52 +24,52 @@
 const SONGS = [
   {
     id: "s1",
-    title: "Despues", // GANTI judul & artis
+    title: "Tití Me Preguntó - Bad Bunny", // GANTI judul & artis
     cover: "Titi me pergunta .jpeg",   // GANTI dengan gambar cover asli
-    audio: "DESPUES.mp3",     // GANTI dengan file musik asli
-    duration: 38
+    audio: "Tití Me Preguntó - Bad Bunny.mp3",     // GANTI dengan file musik asli
+    duration: 243
   },
   {
     id: "s2",
-    title: "Judul Lagu 2 - Nama Artis 2",
+    title: "4K - El Alfa, Darell Noriel",
     cover: "cover-2.svg",
-    audio: "lagu-2.mp3",
-    duration: 383
-  },
-  {
-    id: "s3",
-    title: "Judul Lagu 3 - Nama Artis 3",
-    cover: "cover-3.svg",
-    audio: "lagu-3.mp3",
+    audio: "4K - El Alfa, Darell Noriel .mp3",
     duration: 201
   },
   {
+    id: "s3",
+    title: "1000X - Ghea Indrawari",
+    cover: "cover-3.svg",
+    audio: "1000X - Ghea Indrawari .mp3",
+    duration: 250
+  },
+  {
     id: "s4",
-    title: "Judul Lagu 4 - Nama Artis 4",
+    title: "Anything You Want - Reality Club",
     cover: "cover-4.svg",
-    audio: "lagu-4.mp3",
-    duration: 244
+    audio: "Anything You Want - Reality Club.mp3",
+    duration: 236
   },
   {
     id: "s5",
-    title: "Judul Lagu 5 - Nama Artis 5",
+    title: "Can't Help Falling in Love - Elvis Presley",
     cover: "cover-5.svg",
-    audio: "lagu-5.mp3",
-    duration: 190
+    audio: "Can't Help Falling in Love - Elvis Presley.mp3",
+    duration: 182
   },
   {
     id: "s6",
-    title: "Judul Lagu 6 - Nama Artis 6",
+    title: "Multo - Cup of Joe",
     cover: "cover-6.svg",
-    audio: "lagu-6.mp3",
-    duration: 268
+    audio: "Multo - Cup of Joe.mp3",
+    duration: 237
   },
   {
     id: "s7",
-    title: "Judul Lagu 7 - Nama Artis 7",
+    title: "The Fate of Ophelia - Taylor Swift",
     cover: "cover-7.svg",
-    audio: "lagu-7.mp3",
-    duration: 215
+    audio: "The Fate of Ophelia - Taylor Swift.mp3",
+    duration: 229
   },
   {
     id: "s8",
