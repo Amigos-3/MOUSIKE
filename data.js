@@ -79,70 +79,70 @@ const SONGS = [
     duration: 292
   }
 {
-    id: "s9",
+    id: "s8",
     title: "Merry Christmas, I Miss You - Alex Crichton",
     cover: "Merry Christmas, i miss you.jpeg",
     audio: "Merry Christmas, i miss you - Alex Crichton.mp3",
     duration: 246
   }
 {
-    id: "s10",
+    id: "s8",
     title: "Merry Christmas, Please Don t Call - Bleachers",
     cover: "Merry Christmas, Please Don't Call.jpeg",
     audio: "Merry Christmas, Please Don t Call - Bleachers.mp3",
     duration: 199
   }
 {
-    id: "s11",
+    id: "s8",
     title: "Firasat - Marcell",
     cover: "marcell.jpeg",
     audio: "Firasat - Marcell.mp3",
     duration: 248
   }
 {
-    id: "s12",
+    id: "s8",
     title: "Semusim - Marcell",
     cover: "marcell.jpeg",
     audio: "Semusim - Marcell.mp3",
     duration: 298
   }
 {
-    id: "s13",
+    id: "s8",
     title: "Close To You - Reality Club",
     cover: "close to u.jpeg",
     audio: "Close To You - Reality Club.mp3",
     duration: 204
   }
 {
-    id: "s14",
+    id: "s8",
     title: "Futile Devices Doveman Remix",
     cover: "futile.jpeg",
     audio: "Futile Devices Doveman Remix.mp3",
     duration: 137
   }
 {
-    id: "s15",
+    id: "s8",
     title: "2112 - Reality Club",
     cover: "2112.jpeg",
     audio: "2112 - Reality Club.mp3",
     duration: 356
   }
 {
-    id: "s16",
+    id: "s8",
     title: "A Sorrowful Reunion - Reality Club",
     cover: "a showerful reunion.jpeg",
     audio: "A Sorrowful Reunion - Reality Club.mp3",
     duration: 259
   }
 {
-    id: "s17",
+    id: "s8",
     title: "Lalu Biru - Eleanor Whisper",
     cover: "laru.jpeg",
     audio: "Lalu Biru - Eleanor Whisper.mp3",
     duration: 324
   }
 {
-    id: "s18",
+    id: "s8",
     title: "Reflections - The Neighbourhood",
     cover: "reflection.jpeg",
     audio: "Reflections - The Neighbourhood.mp3",
