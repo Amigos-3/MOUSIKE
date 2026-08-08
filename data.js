@@ -77,7 +77,7 @@ const SONGS = [
     cover: "jealousy.jpeg",
     audio: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA.mp3",
     duration: 292
-  }
+  },
 {
     id: "s9",
     title: "Merry Christmas, I Miss You - Alex Crichton",
