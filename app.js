@@ -68,13 +68,119 @@ function pickRandomN(arr, n) {
   return shuffled.slice(0, n);
 }
 
+/* ============================================================
+   FITUR BARU 1: MINI-PLAYER (pop-up pemutar mini)
+   Muncul di bawah layar begitu ada lagu yang mulai diputar,
+   berisi judul lagu + tombol back / play-pause / skip supaya
+   pengguna tidak perlu scroll kembali ke kartu lagunya.
+   ============================================================ */
+let miniPlayerBoundAudio = null;
+let miniTimeUpdateHandler = null;
+
+function setupMiniPlayer() {
+  if (document.getElementById("miniPlayer")) return; // sudah ada, jangan dobel
+
+  const bar = document.createElement("div");
+  bar.id = "miniPlayer";
+  bar.className = "mini-player";
+  bar.innerHTML = `
+    <button class="mini-close" title="Tutup pemutar mini">&times;</button>
+    <img class="mini-cover" id="miniCover" src="" alt="">
+    <div class="mini-meta">
+      <div class="mini-title" id="miniTitle"></div>
+      <div class="mini-progress-row">
+        <span class="mini-time" id="miniCur">0:00</span>
+        <input type="range" class="mini-range" id="miniRange" min="0" max="100" value="0" step="0.1">
+        <span class="mini-time" id="miniDur">0:00</span>
+      </div>
+    </div>
+    <div class="mini-controls">
+      <button id="miniBack" title="Sebelumnya">&#9198;</button>
+      <button id="miniPlay" title="Play/Pause">&#10073;&#10073;</button>
+      <button id="miniSkip" title="Lagu lain">&#9197;</button>
+    </div>
+  `;
+  document.body.appendChild(bar);
+
+  bar.querySelector(".mini-close").addEventListener("click", () => {
+    if (miniPlayerBoundAudio) miniPlayerBoundAudio.pause();
+    hideMiniPlayer();
+  });
+}
+
+function hideMiniPlayer() {
+  const bar = document.getElementById("miniPlayer");
+  if (!bar) return;
+  bar.classList.remove("active");
+  document.body.classList.remove("has-mini-player");
+}
+
+/**
+ * Menampilkan / memperbarui mini-player agar mengikuti kartu lagu yang sedang aktif.
+ * @param {object} ctl - { title, cover, audio, allowShuffle, onPlayPause, onSkip, onBack }
+ */
+function openMiniPlayer(ctl) {
+  setupMiniPlayer();
+  const bar = document.getElementById("miniPlayer");
+  bar.classList.add("active");
+  document.body.classList.add("has-mini-player");
+
+  document.getElementById("miniTitle").textContent = ctl.title;
+  document.getElementById("miniCover").src = ctl.cover;
+
+  const backBtn = document.getElementById("miniBack");
+  const skipBtn = document.getElementById("miniSkip");
+  const playBtn = document.getElementById("miniPlay");
+
+  backBtn.style.display = ctl.allowShuffle ? "" : "none";
+  skipBtn.style.display = ctl.allowShuffle ? "" : "none";
+
+  playBtn.onclick = ctl.onPlayPause;
+  backBtn.onclick = ctl.onBack;
+  skipBtn.onclick = ctl.onSkip;
+  playBtn.innerHTML = ctl.audio.paused ? "&#9658;" : "&#10073;&#10073;";
+
+  // lepas listener timeupdate dari audio sebelumnya (kartu lagu lain)
+  if (miniPlayerBoundAudio && miniTimeUpdateHandler) {
+    miniPlayerBoundAudio.removeEventListener("timeupdate", miniTimeUpdateHandler);
+  }
+  miniPlayerBoundAudio = ctl.audio;
+
+  const range = document.getElementById("miniRange");
+  const curEl = document.getElementById("miniCur");
+  const durEl = document.getElementById("miniDur");
+
+  miniTimeUpdateHandler = () => {
+    range.max = ctl.audio.duration || 100;
+    range.value = ctl.audio.currentTime;
+    curEl.textContent = formatTime(ctl.audio.currentTime);
+    durEl.textContent = formatTime(ctl.audio.duration || 0);
+  };
+  ctl.audio.addEventListener("timeupdate", miniTimeUpdateHandler);
+  range.oninput = () => {
+    ctl.audio.currentTime = range.value;
+  };
+}
+
+function syncMiniPlayerIcon(audio) {
+  if (audio !== miniPlayerBoundAudio) return;
+  const playBtn = document.getElementById("miniPlay");
+  if (playBtn) playBtn.innerHTML = audio.paused ? "&#9658;" : "&#10073;&#10073;";
+}
+
 /* ---------- SONG CARD (dipakai di beranda & favorite) ---------- */
 /**
  * Membuat 1 kartu lagu yang bisa berganti lagu (skip/back) secara mandiri.
  * @param {object} initialSong - lagu awal yang ditampilkan di kartu ini
- * @param {object} opts - { allowShuffle: boolean } jika true, tombol skip akan
- *   mengambil lagu acak lain dari seluruh SONGS (dipakai di halaman beranda).
- *   Jika false, kartu ini statis mengikuti 1 lagu saja (dipakai untuk lagu favorit developer).
+ * @param {object} opts - { allowShuffle: boolean, songPool: array }
+ *   allowShuffle = true  -> tombol skip/back aktif & lagu otomatis lanjut ke
+ *                           lagu acak lain dari songPool ketika selesai diputar
+ *                           (dipakai di halaman Beranda & Favorite).
+ *   songPool             -> daftar lagu tempat memilih lagu acak. Di halaman
+ *                           Beranda isinya SONGS (semua lagu), di halaman
+ *                           Favorite isinya hanya lagu-lagu favorite.
+ *   allowShuffle = false -> kartu statis mengikuti 1 lagu saja, tanpa lanjut
+ *                           otomatis (dipakai untuk lagu favorit developer).
  */
 function createSongCard(initialSong, opts = {}) {
   const { allowShuffle = false, songPool = SONGS } = opts;
@@ -100,7 +206,7 @@ function createSongCard(initialSong, opts = {}) {
       <div class="controls-row">
         ${allowShuffle ? '<button class="back-btn" title="Sebelumnya">&#9198;</button>' : ""}
         <button class="play-btn" title="Play/Pause">&#9658;</button>
-        ${allowShuffle ? '<button class="skip-btn" title="Acak lagu lain">&#9197;</button>' : ""}
+        ${allowShuffle ? '<button class="skip-btn" title="Lagu lain">&#9197;</button>' : ""}
       </div>
     </div>
     <audio class="song-audio" src="${current.audio}" preload="metadata"></audio>
@@ -122,6 +228,14 @@ function createSongCard(initialSong, opts = {}) {
     heartBtn.classList.toggle("liked", liked);
   }
 
+  function refreshMiniPlayerIfActive() {
+    // kalau kartu ini yang sedang tersambung ke mini-player, ikut update judul/cover-nya
+    if (miniPlayerBoundAudio === audio) {
+      document.getElementById("miniTitle").textContent = current.title;
+      document.getElementById("miniCover").src = current.cover;
+    }
+  }
+
   function loadSong(song, { keepPlaying = false } = {}) {
     current = song;
     img.src = song.cover;
@@ -133,22 +247,25 @@ function createSongCard(initialSong, opts = {}) {
     timeDur.textContent = formatTime(song.duration || 0);
     playBtn.innerHTML = "&#9658;"; // ▶
     refreshHeart();
+    refreshMiniPlayerIfActive();
     if (keepPlaying) {
       audio.play().then(() => {
-        playBtn.innerHTML = "&#10073;&#10073;"; // pause-ish
+        playBtn.innerHTML = "&#10073;&#10073;";
       }).catch(() => {});
     }
   }
 
   loadSong(current);
 
+  /* --- Tombol hati (favorite) --- */
   heartBtn.addEventListener("click", () => {
     toggleFavorite(current.id);
     refreshHeart();
     document.dispatchEvent(new CustomEvent("moesik:favorites-changed"));
   });
 
-  playBtn.addEventListener("click", () => {
+  /* --- Play / Pause (dipakai juga oleh mini-player) --- */
+  function doPlayPause() {
     if (audio.paused) {
       if (currentAudioEl && currentAudioEl !== audio) {
         currentAudioEl.pause();
@@ -160,8 +277,37 @@ function createSongCard(initialSong, opts = {}) {
       audio.pause();
       playBtn.innerHTML = "&#9658;";
     }
-  });
+    syncMiniPlayerIcon(audio);
+  }
+  playBtn.addEventListener("click", doPlayPause);
 
+  /* --- FITUR BARU: lanjut otomatis ke lagu acak lain saat lagu selesai ---
+     Untuk kartu di halaman Favorite, songPool sudah dibatasi hanya berisi
+     lagu-lagu favorite (lihat renderSongGrid & favorite.html), jadi lagu
+     berikutnya otomatis juga hanya diambil dari daftar favorite. */
+  function playNextRandom() {
+    history.push(current);
+    const next = pickRandom(songPool, [current.id]);
+    loadSong(next, { keepPlaying: true });
+    currentAudioEl = audio;
+  }
+
+  function doSkip() {
+    if (!allowShuffle) return;
+    playNextRandom();
+  }
+
+  function doBack() {
+    if (!allowShuffle || !history.length) return;
+    const prev = history.pop();
+    loadSong(prev, { keepPlaying: true });
+    currentAudioEl = audio;
+  }
+
+  if (skipBtn) skipBtn.addEventListener("click", doSkip);
+  if (backBtn) backBtn.addEventListener("click", doBack);
+
+  /* --- Event dari elemen <audio> --- */
   audio.addEventListener("loadedmetadata", () => {
     if (isFinite(audio.duration)) {
       timeDur.textContent = formatTime(audio.duration);
@@ -173,33 +319,34 @@ function createSongCard(initialSong, opts = {}) {
     range.value = audio.currentTime;
     timeCur.textContent = formatTime(audio.currentTime);
   });
+  audio.addEventListener("play", () => {
+    playBtn.innerHTML = "&#10073;&#10073;";
+    // FITUR BARU: tampilkan pop-up mini-player begitu lagu mulai diputar
+    openMiniPlayer({
+      title: current.title,
+      cover: current.cover,
+      audio: audio,
+      allowShuffle: allowShuffle,
+      onPlayPause: doPlayPause,
+      onSkip: doSkip,
+      onBack: doBack,
+    });
+  });
+  audio.addEventListener("pause", () => {
+    playBtn.innerHTML = "&#9658;";
+    syncMiniPlayerIcon(audio);
+  });
   audio.addEventListener("ended", () => {
     playBtn.innerHTML = "&#9658;";
+    if (allowShuffle) {
+      playNextRandom(); // lanjut otomatis ke lagu acak lain
+    } else {
+      syncMiniPlayerIcon(audio);
+    }
   });
   range.addEventListener("input", () => {
     audio.currentTime = range.value;
   });
-
-  if (skipBtn) {
-    skipBtn.addEventListener("click", () => {
-      const wasPlaying = !audio.paused;
-      history.push(current);
-      const next = pickRandom(songPool, [current.id]);
-      audio.pause();
-      loadSong(next, { keepPlaying: wasPlaying });
-      if (wasPlaying) currentAudioEl = audio;
-    });
-  }
-  if (backBtn) {
-    backBtn.addEventListener("click", () => {
-      if (!history.length) return;
-      const wasPlaying = !audio.paused;
-      const prev = history.pop();
-      audio.pause();
-      loadSong(prev, { keepPlaying: wasPlaying });
-      if (wasPlaying) currentAudioEl = audio;
-    });
-  }
 
   document.addEventListener("moesik:favorites-changed", refreshHeart);
 
@@ -207,7 +354,15 @@ function createSongCard(initialSong, opts = {}) {
 }
 
 /* ---------- RENDER GRID (beranda / favorite) ---------- */
-function renderSongGrid(container, songs, { emptyText = "Belum ada lagu." } = {}) {
+/**
+ * @param {HTMLElement} container
+ * @param {array} songs - daftar lagu yang ditampilkan sebagai kartu
+ * @param {object} opts - { emptyText, songPool }
+ *   songPool: sumber lagu acak untuk skip/lanjut-otomatis. Default SONGS
+ *   (dipakai di Beranda). Di halaman Favorite, isi dengan daftar favorite saja.
+ */
+function renderSongGrid(container, songs, opts = {}) {
+  const { emptyText = "Belum ada lagu.", songPool = SONGS } = opts;
   container.innerHTML = "";
   if (!songs.length) {
     const p = document.createElement("div");
@@ -217,8 +372,11 @@ function renderSongGrid(container, songs, { emptyText = "Belum ada lagu." } = {}
     return;
   }
   songs.forEach((song) => {
-    container.appendChild(createSongCard(song, { allowShuffle: true, songPool: SONGS }));
+    container.appendChild(createSongCard(song, { allowShuffle: true, songPool }));
   });
 }
 
-document.addEventListener("DOMContentLoaded", setupSidebar);
+document.addEventListener("DOMContentLoaded", () => {
+  setupSidebar();
+  setupMiniPlayer();
+});
