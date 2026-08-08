@@ -79,110 +79,110 @@ const SONGS = [
     duration: 292
   }
 {
-    id: "s8",
+    id: "s9",
     title: "Merry Christmas, I Miss You - Alex Crichton",
     cover: "Merry Christmas, i miss you.jpeg",
     audio: "Merry Christmas, i miss you - Alex Crichton.mp3",
     duration: 246
-  }
+  },
 {
-    id: "s8",
+    id: "s10",
     title: "Merry Christmas, Please Don t Call - Bleachers",
     cover: "Merry Christmas, Please Don't Call.jpeg",
     audio: "Merry Christmas, Please Don t Call - Bleachers.mp3",
     duration: 199
-  }
+  },
 {
-    id: "s8",
+    id: "s11",
     title: "Firasat - Marcell",
     cover: "marcell.jpeg",
     audio: "Firasat - Marcell.mp3",
     duration: 248
-  }
+  },
 {
-    id: "s8",
+    id: "s12",
     title: "Semusim - Marcell",
     cover: "marcell.jpeg",
     audio: "Semusim - Marcell.mp3",
     duration: 298
-  }
+  },
 {
-    id: "s8",
+    id: "s13",
     title: "Close To You - Reality Club",
     cover: "close to u.jpeg",
     audio: "Close To You - Reality Club.mp3",
     duration: 204
-  }
+  },
 {
-    id: "s8",
+    id: "s14",
     title: "Futile Devices Doveman Remix",
     cover: "futile.jpeg",
     audio: "Futile Devices Doveman Remix.mp3",
     duration: 137
-  }
+  },
 {
-    id: "s8",
+    id: "s15",
     title: "2112 - Reality Club",
     cover: "2112.jpeg",
     audio: "2112 - Reality Club.mp3",
     duration: 356
-  }
+  },
 {
-    id: "s8",
+    id: "s16",
     title: "A Sorrowful Reunion - Reality Club",
     cover: "a showerful reunion.jpeg",
     audio: "A Sorrowful Reunion - Reality Club.mp3",
     duration: 259
-  }
+  },
 {
-    id: "s8",
+    id: "s17",
     title: "Lalu Biru - Eleanor Whisper",
     cover: "laru.jpeg",
     audio: "Lalu Biru - Eleanor Whisper.mp3",
     duration: 324
-  }
+  },
 {
-    id: "s8",
+    id: "s18",
     title: "Reflections - The Neighbourhood",
     cover: "reflection.jpeg",
     audio: "Reflections - The Neighbourhood.mp3",
     duration: 244
-  }
+  },
 {
     id: "s19",
     title: "The Man Who Can't Be Moved - The Script",
     cover: "can't be moved.jpeg",
     audio: "The Man Who Can't Be Moved - The Script.mp3",
     duration: 240
-  }
+  },
 {
     id: "s20",
     title: "Animal - KATSEYE (캣츠아이)",
     cover: "animal.jpeg",
     audio: "Animal - KATSEYE (캣츠아이).mp3",
     duration: 191
-  }
+  },
 {
     id: "s21",
     title: "MOTION - CORTIS (코르티스) , Juicy J",
     cover: "motion.jpeg",
     audio: "MOTION - CORTIS (코르티스) , Juicy J.mp3",
     duration: 158
-  }
+  },
 {
     id: "s22",
     title: "Cokelat Biru - Giorgino",
     cover: "coru.jpeg",
     audio: "Cokelat Biru - Giorgino.mp3",
     duration: 225
-  }
+  },
 {
     id: "s23",
     title: "Cukup Dewasa - Wijaya 80",
     cover: "cukup dewasa.jpeg",
     audio: "Cukup Dewasa - Wijaya 80.mp3",
     duration: 238
-  }
+  },
 ];
 
 const PROFILES = [
