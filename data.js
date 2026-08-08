@@ -73,10 +73,10 @@ const SONGS = [
   },
   {
     id: "s8",
-    title: "Judul Lagu 8 - Nama Artis 8",
-    cover: "cover-8.svg",
-    audio: "lagu-8.mp3",
-    duration: 233
+    title: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA",
+    cover: "jealousy.jpeg",
+    audio: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA.mp3",
+    duration: 292
   }
   // Tambahkan lagu baru dengan menyalin format di atas (id harus unik, misal "s9")
 ];
@@ -113,9 +113,9 @@ const PROFILES = [
     motivasi: "Tidak ada yang tahu jalan kehidupanmu, dengan siapa engkau bertemu, menjalani kehidupan. Terimalah apapun yang terjadi, berjuanglah demi yang memang pantas diperjuangkan.",
     favoriteSong: {
       title: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA",
-      cover: "Jealousy.jpeg",
+      cover: "jealousy.jpeg",
       audio: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA.mp3",
-      duration: 390
+      duration: 392
     }
   },
   {
