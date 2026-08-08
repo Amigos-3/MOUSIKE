@@ -32,28 +32,28 @@ const SONGS = [
   {
     id: "s2",
     title: "4K - El Alfa, Darell Noriel",
-    cover: "cover-2.svg",
+    cover: "4k.jpeg",
     audio: "4K - El Alfa, Darell Noriel .mp3",
     duration: 201
   },
   {
     id: "s3",
     title: "1000X - Ghea Indrawari",
-    cover: "cover-3.svg",
+    cover: "1000x.jpeg",
     audio: "1000X - Ghea Indrawari .mp3",
     duration: 250
   },
   {
     id: "s4",
     title: "Anything You Want - Reality Club",
-    cover: "cover-4.svg",
+    cover: "anything you want.jpeg",
     audio: "Anything You Want - Reality Club.mp3",
     duration: 236
   },
   {
     id: "s5",
     title: "Can't Help Falling in Love - Elvis Presley",
-    cover: "cover-5.svg",
+    cover: "can't help falling in love.jpeg",
     audio: "Can't Help Falling in Love - Elvis Presley.mp3",
     duration: 182
   },
@@ -67,7 +67,7 @@ const SONGS = [
   {
     id: "s7",
     title: "The Fate of Ophelia - Taylor Swift",
-    cover: "cover-7.svg",
+    cover: "the fate of ophelia.jpeg",
     audio: "The Fate of Ophelia - Taylor Swift.mp3",
     duration: 229
   },
