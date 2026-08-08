@@ -50,8 +50,11 @@
       const favs = getFavoriteSongs();
       const q = searchInput.value.trim().toLowerCase();
       const filtered = q ? favs.filter((s) => s.title.toLowerCase().includes(q)) : favs;
+      // songPool: favs (bukan SONGS) -> lagu acak/lanjut-otomatis di halaman ini
+      // hanya diambil dari daftar favorite, sesuai permintaan.
       renderSongGrid(grid, filtered, {
-        emptyText: q ? "Lagu favorite tidak ditemukan." : "Kamu belum menyimpan lagu favorite. Tekan ikon hati pada lagu di Beranda."
+        emptyText: q ? "Lagu favorite tidak ditemukan." : "Kamu belum menyimpan lagu favorite. Tekan ikon hati pada lagu di Beranda.",
+        songPool: favs
       });
     }
 
