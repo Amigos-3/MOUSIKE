@@ -183,6 +183,41 @@ const SONGS = [
     audio: "Cukup Dewasa - Wijaya 80.mp3",
     duration: 238
   },
+{
+    id: "s24",
+    title: "Pure Love - Arash, Helena",
+    cover: "pure love.jpeg",
+    audio: "Pure Love - Arash, Helena .mp3",
+    duration: 211
+  },
+{
+    id: "s25",
+    title: "Maula Mere Maula - Roopkumar Rathod, Sayeed Quadri",
+    cover: "maula.jpeg",
+    audio: "Maula Mere Maula - Roopkumar Rathod, Sayeed Quadri.mp3",
+    duration: 365
+  },
+{
+    id: "s26",
+    title: "Gerua - Antara Mitra, Arijit Singh, dan Pritam Chakraborty",
+    cover: "gerua.jpeg",
+    audio: "Gerua - Antara Mitra, Arijit Singh, dan Pritam Chakraborty.mp3",
+    duration: 346
+  },
+{
+    id: "s27",
+    title: "Janam Janam - Antara Mitra, Arijit Singh",
+    cover: "janam.jpeg",
+    audio: "Janam Janam - Antara Mitra, Arijit Singh.mp3",
+    duration: 238
+  },
+{
+    id: "s28",
+    title: "Chammak Challo - Akon, Hamsika Iyer, Vishal–Shekhar",
+    cover: "chammak.jpeg",
+    audio: "Chammak Challo - Akon, Hamsika Iyer, Vishal–Shekhar.mp3",
+    duration: 226
+  },
 ];
 
 const PROFILES = [
@@ -216,10 +251,10 @@ const PROFILES = [
     tanggalLahir: "25 Juni 2009",
     motivasi: "Tidak ada yang tahu jalan kehidupanmu, dengan siapa engkau bertemu, menjalani kehidupan. Terimalah apapun yang terjadi, berjuanglah demi yang memang pantas diperjuangkan.",
     favoriteSong: {
-      title: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA",
-      cover: "jealousy.jpeg",
-      audio: "Jealousy - Khalil Harrison, LeeMcKrazy, Ceeka RSA.mp3",
-      duration: 392
+      title: "Gerua - Antara Mitra, Arijit Singh, dan Pritam Chakraborty",
+      cover: "gerua.jpeg",
+      audio: "Gerua - Antara Mitra, Arijit Singh, dan Pritam Chakraborty.mp3",
+      duration: 346
     }
   },
   {
